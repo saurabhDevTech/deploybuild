@@ -1,5 +1,5 @@
+const express = require('express');
 exports.handler = async (event, context) => {
-    const express = require('express');
     const app = express();
 
     app.get('/', (req, res) => {
@@ -11,17 +11,16 @@ exports.handler = async (event, context) => {
 
     const PORT = process.env.PORT || 3000;
     app.listen(PORT, () => {
-        console.log(`Server running on port ${PORT}`);
+        // console.log(`Server running on port ${PORT}`);
         return {
             statusCode: 200,
             body: JSON.stringify({ message: `Server running on port ${PORT}` }),
         };
     });
-    console.log("kjdsf")
+    // console.log("kjdsf")
 
     // return {
     //     statusCode: 200,
     //     body: JSON.stringify({ message: 'in trial fun' }),
     // };
-    return app;
 };
