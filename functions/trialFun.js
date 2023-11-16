@@ -19,8 +19,9 @@ exports.handler = async (event, context) => {
     });
     console.log("kjdsf")
 
-    return {
-        statusCode: 200,
-        body: JSON.stringify({ message: 'in trial fun' }),
-    };
+    // return {
+    //     statusCode: 200,
+    //     body: JSON.stringify({ message: 'in trial fun' }),
+    // };
+    return app;
 };
