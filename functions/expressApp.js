@@ -21,10 +21,21 @@ const handler = async (event, context) => {
             // Simulate the Express request and response objects
             const req = { ...event };
             const res = {
-                status: (statusCode) => ({
-                    json: (data) => resolve({ statusCode, body: JSON.stringify(data) }),
-                }),
-            };
+                statusCode: 200,
+                body: '',
+                headers: {},
+                setHeader: (key, value) => {
+                  res.headers[key] = value;
+                },
+                end: (body) => {
+                  res.body = body;
+                  resolve({
+                    statusCode: res.statusCode,
+                    body: res.body,
+                    headers: res.headers,
+                  });
+                },
+              };
 
             // Trigger the Express app using our simulated request and response
             app(req, res);
