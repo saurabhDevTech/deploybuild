@@ -1,26 +1,21 @@
+// functions/expressApp.js
 const express = require('express');
-exports.handler = async (event, context) => {
-    const app = express();
+const app = express();
 
-    app.get('/', (req, res) => {
-        res.send('Hello, this is a basic Node.js project!');
-    });
-    app.get('/second', (req, res) => {
-        res.send('no Hello!');
-    });
+app.get('/', (req, res) => {
+  res.status(200).json({ message: 'Hello from the index route using Express!' });
+});
 
-    const PORT = process.env.PORT || 3000;
-    app.listen(PORT, () => {
-        // console.log(`Server running on port ${PORT}`);
-        return {
-            statusCode: 200,
-            body: JSON.stringify({ message: `Server running on port ${PORT}` }),
-        };
-    });
-    // console.log("kjdsf")
+app.get('/about', (req, res) => {
+  res.status(200).json({ message: 'This is the about route using Express!' });
+});
 
-    // return {
-    //     statusCode: 200,
-    //     body: JSON.stringify({ message: 'in trial fun' }),
-    // };
+app.get('/contact', (req, res) => {
+  res.status(200).json({ message: 'You\'ve reached the contact route using Express!' });
+});
+
+// Export the Express app as a handler for Netlify Function
+module.exports.handler = (event, context) => {
+  const handler = app;
+  return handler(event, context);
 };
